@@ -24,6 +24,9 @@ namespace Socialmedia.Models
         public string Gender { get; set; }
 
         [BsonElement("Posts")]
-        public Post Post { get; set; }
+        public Post[] Post { get; set; }
+
+        [BsonElement("Circles")]
+        public Circle[] Circle { get; set; }
     }
 }
