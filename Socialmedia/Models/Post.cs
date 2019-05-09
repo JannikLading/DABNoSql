@@ -29,7 +29,7 @@ namespace Socialmedia.Models
         public string ContentPicture { get; set; }
 
         [BsonElement("Comments")]
-        public string[] Comments { get; set; }
+        public List<String> Comments { get; set; }
             
     }
 }
