@@ -24,9 +24,15 @@ namespace Socialmedia.Models
         public string Gender { get; set; }
 
         [BsonElement("Posts")]
-        public Post[] Post { get; set; }
-
+        public List<Post> Post { get; set; }
+         
         [BsonElement("Circles")]
-        public Circle[] Circle { get; set; }
+        public List<Circle> Circle { get; set; }
+
+        [BsonElement("Follows")]
+        public List<string> FollowUserId { get; set; }
+
+        [BsonElement("Blocked")]
+        public List<string> BlockedUserId { get; set; }
     }
 }
