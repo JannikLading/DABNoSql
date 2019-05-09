@@ -21,6 +21,15 @@ namespace Socialmedia.Services
             _Circles = database.GetCollection<Circle>("Circles");
         }
 
-        
+        public List<Circle> Get()
+        {
+            return _Circles.Find(circle => true).ToList();
+        }
+
+        public Circle Create(Circle circle)
+        {
+            _Circles.InsertOne(circle);
+            return circle;
+        }
     }
 }
