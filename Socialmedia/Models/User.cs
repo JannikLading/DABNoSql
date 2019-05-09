@@ -28,5 +28,8 @@ namespace Socialmedia.Models
 
         [BsonElement("Circles")]
         public Circle[] Circle { get; set; }
+
+        [BsonElement("Follows")]
+        public User[] Follows { get; set; }
     }
 }
