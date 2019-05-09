@@ -14,15 +14,13 @@ namespace Socialmedia.Controllers
     public class FeedsController : ControllerBase
     {
         private readonly UserService _userService;
-        private readonly PostsService _postsService;
 
-        public FeedsController(UserService userService, PostsService postsService)
+        public FeedsController(UserService userService)
         {
             _userService = userService;
-            _postsService = postsService;
         }
 
-        [HttpGet("{id")]
+        [HttpGet("{id}")]
         public ActionResult<List<Post>> Get(string userId)
         {
             List<Post> postsInFeed=new List<Post>();
