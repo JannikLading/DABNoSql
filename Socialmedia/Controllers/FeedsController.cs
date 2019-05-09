@@ -34,6 +34,23 @@ namespace Socialmedia.Controllers
                 postsInFeed.Add(i);
             }
 
+            foreach (var i in user.Circle)
+            {
+                foreach (var j in i.Post)
+                {
+                    postsInFeed.Add(j);
+                }
+            }
+
+            foreach (var i in user.FollowUserId)
+            {
+                var User = _userService.Get(i);
+                foreach (var j in User.Post)
+                {
+                    postsInFeed.Add(j);
+                }
+            }
+
             return postsInFeed;
         }
     }
