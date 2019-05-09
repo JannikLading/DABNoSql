@@ -21,10 +21,14 @@ namespace Socialmedia.Controllers
         }
 
         [HttpGet("{id}")]
-        public ActionResult<List<Post>> Get(string userId)
+        public ActionResult<List<Post>> Get(string id)
         {
             List<Post> postsInFeed=new List<Post>();
-            User user = _userService.Get(userId);
+            User user = _userService.Get(id);
+            if (user.Post == null)
+            {
+                return NotFound();
+            }
             foreach (var i in user.Post)
             {
                 postsInFeed.Add(i);
