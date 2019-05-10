@@ -12,23 +12,28 @@ namespace Socialmedia.Services
     public class CircleService
     {
 
-        private readonly IMongoCollection<Circle> _Circles;
+        private readonly IMongoCollection<Circle> _circles;
 
         public CircleService(IConfiguration config)
         {
             var client = new MongoClient(config.GetConnectionString("SocialMediaDb"));
             var database = client.GetDatabase("SocialMediaDb");
-            _Circles = database.GetCollection<Circle>("Circles");
+            _circles = database.GetCollection<Circle>("Circles");
         }
 
         public List<Circle> Get()
         {
-            return _Circles.Find(circle => true).ToList();
+            return _circles.Find(circle => true).ToList();
+        }
+
+        public Circle Get(string id)
+        {
+            return _circles.Find<Circle>(circle => circle.Id == id).FirstOrDefault();
         }
 
         public Circle Create(Circle circle)
         {
-            _Circles.InsertOne(circle);
+            _circles.InsertOne(circle);
             return circle;
         }
     }

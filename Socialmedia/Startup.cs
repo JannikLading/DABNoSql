@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Socialmedia.Controllers;
 using Socialmedia.Services;
 
 namespace Socialmedia
@@ -27,6 +28,7 @@ namespace Socialmedia
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddScoped<UserService>();
+            services.AddScoped<CircleService>();
             services.AddScoped<PostsService>(); 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }

@@ -14,10 +14,12 @@ namespace Socialmedia.Controllers
     public class FeedsController : ControllerBase
     {
         private readonly UserService _userService;
+        private readonly CircleService _circleService;
 
-        public FeedsController(UserService userService)
+        public FeedsController(UserService userService, CircleService circleService)
         {
             _userService = userService;
+            _circleService = circleService;
         }
 
         [HttpGet("{id}")]
@@ -25,21 +27,34 @@ namespace Socialmedia.Controllers
         {
             List<Post> postsInFeed=new List<Post>();
             User user = _userService.Get(id);
+
             if (user.Post == null)
             {
                 return NotFound();
             }
+
             foreach (var i in user.Post)
             {
                 postsInFeed.Add(i);
             }
 
-            foreach (var i in user.Circle)
+            if (user.CircleId == null)
             {
-                foreach (var j in i.Post)
+                return NotFound();
+            }
+
+            foreach (var i in user.CircleId)
+            {
+                var Circle = _circleService.Get(i);
+                foreach (var j in Circle.Post)
                 {
                     postsInFeed.Add(j);
                 }
+            }
+
+            if (user.FollowUserId == null)
+            {
+                return NotFound();
             }
 
             foreach (var i in user.FollowUserId)

@@ -15,6 +15,11 @@ namespace Socialmedia.Controllers
     {
         private readonly CircleService _circleService;
 
+        public CirclesController(CircleService circleService)
+        {
+            _circleService = circleService;
+        }
+
         [HttpGet]
         public ActionResult<List<Circle>> Get()
         {
