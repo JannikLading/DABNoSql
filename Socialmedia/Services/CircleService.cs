@@ -26,6 +26,11 @@ namespace Socialmedia.Services
             return _circles.Find(circle => true).ToList();
         }
 
+        public Circle Get(string id)
+        {
+            return _circles.Find<Circle>(circle => circle.Id == id).FirstOrDefault();
+        }
+
         public Circle Create(Circle circle)
         {
             _circles.InsertOne(circle);

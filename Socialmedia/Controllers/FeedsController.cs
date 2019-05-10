@@ -14,10 +14,12 @@ namespace Socialmedia.Controllers
     public class FeedsController : ControllerBase
     {
         private readonly UserService _userService;
+        private readonly CircleService _circleService;
 
-        public FeedsController(UserService userService)
+        public FeedsController(UserService userService, CircleService circleService)
         {
             _userService = userService;
+            _circleService = circleService;
         }
 
         [HttpGet("{id}")]
@@ -34,8 +36,9 @@ namespace Socialmedia.Controllers
                 postsInFeed.Add(i);
             }
 
-            foreach (var i in user.Circle)
+            foreach (var i in user.CircleId)
             {
+                var Circle = _circleService.Get(i);
                 foreach (var j in i.Post)
                 {
                     postsInFeed.Add(j);
