@@ -27,13 +27,20 @@ namespace Socialmedia.Controllers
         {
             List<Post> postsInFeed=new List<Post>();
             User user = _userService.Get(id);
+
             if (user.Post == null)
             {
                 return NotFound();
             }
+
             foreach (var i in user.Post)
             {
                 postsInFeed.Add(i);
+            }
+
+            if (user.CircleId == null)
+            {
+                return NotFound();
             }
 
             foreach (var i in user.CircleId)
@@ -43,6 +50,11 @@ namespace Socialmedia.Controllers
                 {
                     postsInFeed.Add(j);
                 }
+            }
+
+            if (user.FollowUserId == null)
+            {
+                return NotFound();
             }
 
             foreach (var i in user.FollowUserId)
