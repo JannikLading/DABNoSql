@@ -39,7 +39,7 @@ namespace Socialmedia.Controllers
             foreach (var i in user.CircleId)
             {
                 var Circle = _circleService.Get(i);
-                foreach (var j in i.Post)
+                foreach (var j in Circle.Post)
                 {
                     postsInFeed.Add(j);
                 }
