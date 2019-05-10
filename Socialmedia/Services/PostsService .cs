@@ -44,8 +44,9 @@ namespace Socialmedia.Services
 
         public void CommentPost(string id, string comment)
         {
-            Post post = Get(id); 
-            post.Comments.Add(comment);
+            Post postNew = Get(id); 
+            postNew.Comments.Add(comment);
+            _posts.ReplaceOne(post => post.Id == id, postNew);
         }
 
         public void Remove(Post postIn)

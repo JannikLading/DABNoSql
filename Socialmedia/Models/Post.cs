@@ -9,6 +9,11 @@ namespace Socialmedia.Models
 {
     public class Post
     {
+        //public Post()
+        //{
+        //    Comments = new List<string>();
+        //}
+           
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
         public string Id { get; set; }
@@ -29,7 +34,7 @@ namespace Socialmedia.Models
         public string ContentPicture { get; set; }
 
         [BsonElement("Comments")]
-        public List<String> Comments { get; set; }
+        public List<string> Comments { get; set; }
             
     }
 }

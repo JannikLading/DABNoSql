@@ -46,30 +46,30 @@ namespace Socialmedia.Controllers
         public ActionResult<Post> Create(Post post)
         {
             _postsService.Create(post);
-            return CreatedAtRoute("GetPost", new { id = post.Id.ToString() }, post);
+            return CreatedAtRoute("GetPost", new {id = post.Id.ToString()}, post);
         }
 
         // POST api/<controller>
         [HttpPost("{id}")]
         public ActionResult<Post> Create(string id, Post post)
         {
-            post.UserId = id; 
+            post.UserId = id;
             _postsService.Create(post);
-            return CreatedAtRoute("GetPost", new { id = post.Id.ToString() }, post);
+            return CreatedAtRoute("GetPost", new {id = post.Id.ToString()}, post);
         }
 
-        // PUT api/<controller>/5
-        [HttpPut("{id}")]
-        public IActionResult Comment(string id, string comment) 
+        //  api/<controller>/5
+        [HttpPatch("{id}")]
+        public ActionResult Comment(string id, Comment text) 
         {
             var post = _postsService.Get(id);
 
-            if (post == null)
+           if (post == null)
             {
                 return NotFound();
             }
 
-            _postsService.CommentPost(id, comment);
+            _postsService.CommentPost(id, text.CommentText);
 
             return NoContent(); 
         }
