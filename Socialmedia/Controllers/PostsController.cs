@@ -11,6 +11,7 @@ using Socialmedia.Services;
 namespace Socialmedia.Controllers
 {
     [Route("api/[controller]")]
+    [ApiController]
     public class PostsController : Controller
     {
 
