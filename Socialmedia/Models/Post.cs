@@ -12,7 +12,7 @@ namespace Socialmedia.Models
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
         public string Id { get; set; }
-
+            
         [BsonElement("Date")]
         public string Date { get; set; }
 
