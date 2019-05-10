@@ -29,6 +29,7 @@ namespace Socialmedia
         {
             services.AddScoped<UserService>();
             services.AddScoped<CircleService>();
+            services.AddScoped<PostsService>(); 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
