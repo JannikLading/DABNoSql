@@ -27,8 +27,8 @@ namespace Socialmedia.Models
         public List<Post> Post { get; set; }
          
         [BsonElement("Circles")]
-        public List<Circle> Circle { get; set; }
-
+        public List<string> CircleId { get; set; }
+        
         [BsonElement("Follows")]
         public List<string> FollowUserId { get; set; }
 
