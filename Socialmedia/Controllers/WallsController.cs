@@ -40,49 +40,33 @@ namespace Socialmedia.Controllers
                 postsToWall.Add(post);
             }
             
+            List<string> circleIdList = new List<string>();
 
+            foreach (var circleId in user.CircleId)
+            {
+                foreach (var circleIdOther in guestUser.CircleId)
+                {
+                    if (circleId == circleIdOther)
+                    {
+                        circleIdList.Add(circleId);
+                    }
+                }
+            }
+
+            foreach (var circleId in circleIdList)
+            {
+                Circle circle = _circleService.Get(circleId);
+
+                foreach (var post in circle.Post)
+                {
+                    if (post.UserId == userId)
+                    {
+                        postsToWall.Add(post);
+                    }
+                }
+            }
 
             return postsToWall;
-
-            //if (user.Post == null)
-            //{
-            //    return NotFound();
-            //}
-
-            //foreach (var i in user.Post)
-            //{
-            //    postsInFeed.Add(i);
-            //}
-
-            //if (user.CircleId == null)
-            //{
-            //    return NotFound();
-            //}
-
-            //foreach (var i in user.CircleId)
-            //{
-            //    var Circle = _circleService.Get(i);
-            //    foreach (var j in Circle.Post)
-            //    {
-            //        postsInFeed.Add(j);
-            //    }
-            //}
-
-            //if (user.FollowUserId == null)
-            //{
-            //    return NotFound();
-            //}
-
-            //foreach (var i in user.FollowUserId)
-            //{
-            //    var User = _userService.Get(i);
-            //    foreach (var j in User.Post)
-            //    {
-            //        postsInFeed.Add(j);
-            //    }
-            //}
-
-            //return postsInFeed;
         }
     }
 }
