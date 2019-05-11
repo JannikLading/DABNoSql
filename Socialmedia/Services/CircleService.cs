@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Permissions;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -35,6 +36,11 @@ namespace Socialmedia.Services
         {
             _circles.InsertOne(circle);
             return circle;
+        }
+
+        public void Update(Circle circle)
+        {
+            _circles.ReplaceOne(circleOld => circleOld.Id == circle.Id, circle); 
         }
     }
 }
