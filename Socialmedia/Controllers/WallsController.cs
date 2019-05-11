@@ -23,6 +23,44 @@ namespace Socialmedia.Controllers
             _circleService = circleService;
         }
 
+        [HttpGet("{userId}/{guestId}")]
+        public ActionResult<List<Post>> Get(string userId, string guestId)
+        {
+            List<Post> postsToWall = new List<Post>();
+            User user = _userService.Get(userId);
+            User guestUser = _userService.Get(guestId);
+
+            foreach (var id in user.BlockedUserId)
+            {
+                if (guestId == id)
+                    return NoContent(); 
+            }
+
+            foreach (var post in user.Post)
+            {
+                postsToWall.Add(post);
+            }
+            
+            List<string> circleIdList = new List<string>();
+        private readonly UserService _userService;
+        private readonly CircleService _circleService;
+
+            foreach (var circleId in user.CircleId)
+            {
+                foreach (var circleIdOther in guestUser.CircleId)
+                {
+                    if (circleId == circleIdOther)
+                    {
+                        circleIdList.Add(circleId);
+                    }
+                }
+            }
+        public WallsController(UserService userService, CircleService circleService)
+        {
+            _userService = userService;
+            _circleService = circleService;
+        }
+
         [HttpGet("user_id, guest_id")]
         public ActionResult<List<Post>> Get(string user_id, string guest_id)
         {
@@ -58,6 +96,20 @@ namespace Socialmedia.Controllers
                 }
             }
             return Posts;
+            foreach (var circleId in circleIdList)
+            {
+                Circle circle = _circleService.Get(circleId);
+
+                foreach (var post in circle.Post)
+                {
+                    if (post.UserId == userId)
+                    {
+                        postsToWall.Add(post);
+                    }
+                }
+            }
+
+            return postsToWall;
         }
     }
 }
