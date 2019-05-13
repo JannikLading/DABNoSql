@@ -24,7 +24,7 @@ namespace Socialmedia.Services
 
         static async void seedUsers(IMongoCollection<User> users)
         {
-            await users.InsertOneAsync(new User {FullName = "Test"});
+            await users.InsertOneAsync(new User {Id = "000000000000000000000000", FullName = "Test"});
         }       
 
         public List<User> Get()
