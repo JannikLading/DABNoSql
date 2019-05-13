@@ -11,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Socialmedia.Controllers;
+using Socialmedia.Seeders;
 using Socialmedia.Services;
 
 namespace Socialmedia
@@ -20,8 +21,10 @@ namespace Socialmedia
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+            Seeding=new Seeding(Configuration);
         }
 
+        public Seeding Seeding;
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
