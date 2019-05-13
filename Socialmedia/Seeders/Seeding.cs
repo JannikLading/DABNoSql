@@ -29,6 +29,7 @@ namespace Socialmedia.Seeders
         static async void SeedUser(IMongoCollection<User> user)
         {
             await user.InsertOneAsync(new User {FullName = "Niels"});
+
         }
     }
 }
