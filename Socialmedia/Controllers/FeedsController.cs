@@ -35,7 +35,7 @@ namespace Socialmedia.Controllers
 
             foreach (var i in user.Post)
             {
-                postsInFeed.Add(i);
+                //postsInFeed.Add(i);
             }
 
             if (user.CircleId == null)
@@ -48,7 +48,7 @@ namespace Socialmedia.Controllers
                 var Circle = _circleService.Get(i);
                 foreach (var j in Circle.Post)
                 {
-                    postsInFeed.Add(j);
+                    //postsInFeed.Add(j);
                 }
             }
 
@@ -62,7 +62,7 @@ namespace Socialmedia.Controllers
                 var User = _userService.Get(i);
                 foreach (var j in User.Post)
                 {
-                    postsInFeed.Add(j);
+                    //postsInFeed.Add(j);
                 }
             }
 

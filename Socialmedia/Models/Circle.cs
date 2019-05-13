@@ -17,9 +17,9 @@ namespace Socialmedia.Models
         public string Name { get; set; }
 
         [BsonElement("Members")]
-        public List<string> UserIds { get; set; }
+        public List<string> UserId { get; set; }
 
         [BsonElement("Posts")]
-        public List<Post> Post { get; set; }
+        public List<string> PostId { get; set; }
     }
 }

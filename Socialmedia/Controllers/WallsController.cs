@@ -38,7 +38,7 @@ namespace Socialmedia.Controllers
 
             foreach (var post in user.Post)
             {
-                postsToWall.Add(post);
+                //postsToWall.Add(post);
             }
             
             List<string> circleIdList = new List<string>();

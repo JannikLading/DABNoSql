@@ -63,8 +63,8 @@ namespace Socialmedia.Controllers
 
                 if (circle == null)
                     return NotFound();
-
-                circle.Post.Add(post);
+                
+                //circle.Post.Add(_postsService.Create(post));
                 _circleService.Update(circle); 
             }
             else
@@ -74,7 +74,7 @@ namespace Socialmedia.Controllers
                 if (user == null)
                     return NotFound();
 
-                user.Post.Add(post);
+                //user.Post.Add(_postsService.Create(post));
                 _userService.Update(userId, user);
             }
 

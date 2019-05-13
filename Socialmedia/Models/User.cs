@@ -24,7 +24,7 @@ namespace Socialmedia.Models
         public string Gender { get; set; }
 
         [BsonElement("Posts")]
-        public List<Post> Post { get; set; }
+        public List<string> PostId { get; set; }
          
         [BsonElement("Circles")]
         public List<string> CircleId { get; set; }
