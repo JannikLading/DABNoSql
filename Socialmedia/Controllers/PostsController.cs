@@ -57,6 +57,8 @@ namespace Socialmedia.Controllers
         [HttpPost("{userId}")]
         public ActionResult Create_Post(string userId, Post post)
         {
+            _postsService.Create(post); 
+            
             if (post.CircleId != null) // not tested 
             {
                 var circle = _circleService.Get(post.CircleId);
@@ -64,7 +66,7 @@ namespace Socialmedia.Controllers
                 if (circle == null)
                     return NotFound();
                 
-                //circle.Post.Add(_postsService.Create(post));
+                circle.PostId.Add(post.Id);
                 _circleService.Update(circle); 
             }
             else
@@ -74,8 +76,8 @@ namespace Socialmedia.Controllers
                 if (user == null)
                     return NotFound();
 
-                //user.Post.Add(_postsService.Create(post));
-                _userService.Update(userId, user);
+                user.PostId.Add(post.Id);
+                _userService.Update(user);
             }
 
             return NoContent(); 
@@ -83,16 +85,16 @@ namespace Socialmedia.Controllers
 
         //  api/<controller>/5
         [HttpPatch("{id}")]
-        public ActionResult Create_Comment(string id, Comment text) 
+        public ActionResult Create_Comment(string postId, Comment text) 
         {
-           var post = _postsService.Get(id);
+           var post = _postsService.Get(postId);
         
            if (post == null)
             {
                 return NotFound();
             }
 
-            _postsService.CommentPost(id, text.CommentText);
+            _postsService.CommentPost(postId, text.CommentText);
 
             return NoContent(); 
         }

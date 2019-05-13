@@ -43,9 +43,9 @@ namespace Socialmedia.Services
             return user;
         }
 
-        public void Update(string id, User userIn)
+        public void Update(User userIn)
         {
-            _users.ReplaceOne(user => user.Id == id, userIn);
+            _users.ReplaceOne(userOld => userOld.Id == userIn.Id, userIn);
         }
 
         public void Remove(User userIn)
