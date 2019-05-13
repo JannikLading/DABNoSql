@@ -42,5 +42,11 @@ namespace Socialmedia.Services
         {
             _circles.ReplaceOne(circleOld => circleOld.Id == circle.Id, circle); 
         }
+
+        public void AddUser(Circle circle, string userId)
+        {
+            circle.UserIds.Add(userId);
+            Update(circle);
+        }
     }
 }

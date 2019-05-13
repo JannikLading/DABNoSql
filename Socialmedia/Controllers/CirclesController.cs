@@ -32,5 +32,14 @@ namespace Socialmedia.Controllers
             _circleService.Create(circle);
             return CreatedAtRoute("GetCircle", new { id = circle.Id.ToString() }, circle);
         }
+
+        [HttpPatch("{circleId}/{userId}")]
+        public ActionResult<Circle> AddUserToCircle(string circleId, string userId)
+        {
+            Circle circle = _circleService.Get(circleId); 
+            _circleService.AddUser(circle, userId);
+
+            return circle; 
+        }
     }
 }
