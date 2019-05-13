@@ -26,45 +26,45 @@ namespace Socialmedia.Controllers
         public ActionResult<List<Post>> Get(string id)
         {
             List<Post> postsInFeed=new List<Post>();
-            var user = _userService.Get(id);
+            //var user = _userService.Get(id);
 
-            if (user.Post == null)
-            {
-                return NotFound();
-            }
+            //if (user.Post == null)
+            //{
+            //    return NotFound();
+            //}
 
-            foreach (var i in user.Post)
-            {
-                //postsInFeed.Add(i);
-            }
+            //foreach (var i in user.Post)
+            //{
+            //    //postsInFeed.Add(i);
+            //}
 
-            if (user.CircleId == null)
-            {
-                return NotFound();
-            }
+            //if (user.CircleId == null)
+            //{
+            //    return NotFound();
+            //}
 
-            foreach (var i in user.CircleId)
-            {
-                var Circle = _circleService.Get(i);
-                foreach (var j in Circle.Post)
-                {
-                    //postsInFeed.Add(j);
-                }
-            }
+            //foreach (var i in user.CircleId)
+            //{
+            //    var Circle = _circleService.Get(i);
+            //    foreach (var j in Circle.Post)
+            //    {
+            //        //postsInFeed.Add(j);
+            //    }
+            //}
 
-            if (user.FollowUserId == null)
-            {
-                return NotFound();
-            }
+            //if (user.FollowUserId == null)
+            //{
+            //    return NotFound();
+            //}
 
-            foreach (var i in user.FollowUserId)
-            {
-                var User = _userService.Get(i);
-                foreach (var j in User.Post)
-                {
-                    //postsInFeed.Add(j);
-                }
-            }
+            //foreach (var i in user.FollowUserId)
+            //{
+            //    var User = _userService.Get(i);
+            //    foreach (var j in User.Post)
+            //    {
+            //        //postsInFeed.Add(j);
+            //    }
+            //}
 
             return postsInFeed;
         }

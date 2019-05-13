@@ -45,7 +45,7 @@ namespace Socialmedia.Services
 
         public void AddUser(Circle circle, string userId)
         {
-            circle.UserIds.Add(userId);
+            circle.UserId.Add(userId);
             Update(circle);
         }
     }
