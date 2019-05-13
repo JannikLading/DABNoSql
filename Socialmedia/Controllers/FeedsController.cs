@@ -26,7 +26,7 @@ namespace Socialmedia.Controllers
         public ActionResult<List<Post>> Get(string id)
         {
             List<Post> postsInFeed=new List<Post>();
-            User user = _userService.Get(id);
+            var user = _userService.Get(id);
 
             if (user.Post == null)
             {

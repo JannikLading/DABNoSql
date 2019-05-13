@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Socialmedia.Models;
 using Socialmedia.Services;
 
+
 namespace Socialmedia.Controllers
 {
     [Route("api/[controller]")]
@@ -52,7 +53,7 @@ namespace Socialmedia.Controllers
                     }
                 }
             }
-
+           
             foreach (var circleId in circleIdList)
             {
                 Circle circle = _circleService.Get(circleId);
