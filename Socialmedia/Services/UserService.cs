@@ -19,7 +19,13 @@ namespace Socialmedia.Services
             var client = new MongoClient(config.GetConnectionString("SocialMediaDb"));
             var database = client.GetDatabase("SocialMediaDb");
             _users = database.GetCollection<User>("Users");
+            seedUsers(_users);
         }
+
+        static async void seedUsers(IMongoCollection<User> users)
+        {
+            await users.InsertOneAsync(new User {FullName = "Test"});
+        }       
 
         public List<User> Get()
         {
