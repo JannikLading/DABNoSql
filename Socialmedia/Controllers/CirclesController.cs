@@ -25,6 +25,19 @@ namespace Socialmedia.Controllers
         {
             return _circleService.Get();
         }
+        
+        [HttpGet("{id}", Name = "GetCircle")]
+        public ActionResult<Circle> Get(string id)
+        {
+            var circle = _circleService.Get(id);
+
+            if (circle == null)
+            {
+                return NotFound();
+            }
+
+            return circle;
+        }
 
         [HttpPost]
         public ActionResult<Circle> Create(Circle circle)
