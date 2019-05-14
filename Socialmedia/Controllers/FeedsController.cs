@@ -15,56 +15,54 @@ namespace Socialmedia.Controllers
     {
         private readonly UserService _userService;
         private readonly CircleService _circleService;
+        private readonly PostsService _postsService;
 
-        public FeedsController(UserService userService, CircleService circleService)
+        public FeedsController(UserService userService, CircleService circleService, PostsService postsService)
         {
             _userService = userService;
             _circleService = circleService;
+            _postsService = postsService; 
         }
 
         [HttpGet("{id}")]
         public ActionResult<List<Post>> Get(string id)
         {
             List<Post> postsInFeed=new List<Post>();
-            //var user = _userService.Get(id);
+            var user = _userService.Get(id);
 
-            //if (user.Post == null)
-            //{
-            //    return NotFound();
-            //}
+            if (user == null)
+            {
+                return NotFound();
+            }
 
-            //foreach (var i in user.Post)
-            //{
-            //    //postsInFeed.Add(i);
-            //}
+            foreach (var postId in user.PostId)
+            {
+                postsInFeed.Add(_postsService.Get(postId));
+            }
 
-            //if (user.CircleId == null)
-            //{
-            //    return NotFound();
-            //}
+            if (user.CircleId != null)
+            {
+                foreach (var circleId in user.CircleId)
+                {
+                    var Circle = _circleService.Get(circleId);
+                    foreach (var postId in Circle.PostId)
+                    {
+                        postsInFeed.Add(_postsService.Get(postId));
+                    }
+                }
+            }
 
-            //foreach (var i in user.CircleId)
-            //{
-            //    var Circle = _circleService.Get(i);
-            //    foreach (var j in Circle.Post)
-            //    {
-            //        //postsInFeed.Add(j);
-            //    }
-            //}
-
-            //if (user.FollowUserId == null)
-            //{
-            //    return NotFound();
-            //}
-
-            //foreach (var i in user.FollowUserId)
-            //{
-            //    var User = _userService.Get(i);
-            //    foreach (var j in User.Post)
-            //    {
-            //        //postsInFeed.Add(j);
-            //    }
-            //}
+            if (user.FollowUserId != null)
+            {
+                foreach (var followUserId in user.FollowUserId)
+                {
+                    var User = _userService.Get(followUserId);
+                    foreach (var postId in User.PostId)
+                    {
+                        postsInFeed.Add(_postsService.Get(postId));
+                    }
+                }
+            }
 
             return postsInFeed;
         }
