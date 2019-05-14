@@ -21,6 +21,7 @@ namespace Socialmedia.Services
             _posts = database.GetCollection<Post>("Posts");
         }
 
+
         public List<Post> Get()
         {
             return _posts.Find(post => true).ToList();
