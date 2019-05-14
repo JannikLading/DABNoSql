@@ -18,10 +18,11 @@ namespace Socialmedia.Controllers
         private readonly CircleService _circleService;
         private readonly PostsService _postsService; 
 
-        public WallsController(UserService userService, CircleService circleService)
+        public WallsController(UserService userService, CircleService circleService, PostsService postsService)
         {
             _userService = userService;
             _circleService = circleService;
+            _postsService = postsService; 
         }
 
         [HttpGet("{userId}/{guestId}")]
