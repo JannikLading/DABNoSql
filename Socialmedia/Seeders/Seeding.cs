@@ -83,8 +83,7 @@ namespace Socialmedia.Seeders
                     Id = "100000000000000000000000",
                     ContentText = "Dette er en post1",
                     UserId = "000000000000000000000000",
-                    CircleId = null
-
+                    Comments = new List<string>{"Dette er en kommentar til en post", "Dette er endnu en kommentar til en post"}
                 },
                 new Post
                 {
