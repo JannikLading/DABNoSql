@@ -9,11 +9,7 @@ namespace Socialmedia.Models
 {
     public class Post
     {
-        //public Post()
-        //{
-        //    Comments = new List<string>();
-        //}
-           
+      
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
         public string Id { get; set; }
