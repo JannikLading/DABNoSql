@@ -39,7 +39,7 @@ namespace Socialmedia.Seeders
                     PostId = new List<string> {"100000000000000000000000"},
                     CircleId=new List<string>{"010000000000000000000000"},
                     FollowUserId = new List<string>{"000000000000000000000010"},
-                    BlockedUserId = new List<string>{ "100000000000000000000011" }
+                    BlockedUserId = new List<string>{ "000000000000000000000011" }
                 },
                 new User
                 {
@@ -54,7 +54,7 @@ namespace Socialmedia.Seeders
                 {
                     FullName = "NoobSlayer69",
                     Id="000000000000000000000010",
-                    PostId = new List<string> {"000000000000000000000010"},
+                    PostId = new List<string> {"100000000000000000000010"},
                     CircleId=new List<string>{},
                     FollowUserId = new List<string>{},
                     BlockedUserId = new List<string>{}
@@ -63,7 +63,7 @@ namespace Socialmedia.Seeders
                 new User
                 {
                     FullName = "TheLegend27",
-                    Id = "0000000000000000000011",
+                    Id = "000000000000000000000011",
                     PostId = new List<string> {"100000000000000000000011"},
                     CircleId=new List<string>{},
                     FollowUserId = new List<string>{},
@@ -104,6 +104,13 @@ namespace Socialmedia.Seeders
                     Id="100000000000000000000011",
                     ContentText = "Dette er en post4",
                     UserId = "0000000000000000000011",
+                },
+                new Post
+                {
+                    Id = "100000000000000000000100",
+                    ContentText = "Dette er en post5",
+                    UserId = "000000000000000000000001",
+                    CircleId = "010000000000000000000000"
                 }
             };
             await post.InsertManyAsync(posts);
@@ -115,10 +122,10 @@ namespace Socialmedia.Seeders
 
             {
                 Id = "010000000000000000000000",
-                PostId = new List<string> {"100000000000000000000001"},
-                UserId = new List<string> {"000000000000000000000000"}
+                PostId = new List<string> {"100000000000000000000001", "100000000000000000000100" },
+                UserId = new List<string> {"000000000000000000000000", "000000000000000000000001" }
             };
-            await circle.InsertOneAsync(circles);
+            await circle.InsertOneAsync(circles);   
         }
     }
 }
