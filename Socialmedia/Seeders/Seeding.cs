@@ -38,8 +38,8 @@ namespace Socialmedia.Seeders
                     Id = "000000000000000000000000",
                     PostId = new List<string> {"100000000000000000000000"},
                     CircleId=new List<string>{"010000000000000000000000"},
-                    FollowUserId = new List<string>{},
-                    BlockedUserId = new List<string>{}
+                    FollowUserId = new List<string>{"000000000000000000000010"},
+                    BlockedUserId = new List<string>{ "100000000000000000000011" }
                 },
                 new User
                 {
@@ -49,6 +49,26 @@ namespace Socialmedia.Seeders
                     CircleId=new List<string>{"010000000000000000000000"},
                     FollowUserId = new List<string>{},
                     BlockedUserId = new List<string>{}
+                }, 
+                new User
+                {
+                    FullName = "NoobSlayer69",
+                    Id="000000000000000000000010",
+                    PostId = new List<string> {"000000000000000000000010"},
+                    CircleId=new List<string>{},
+                    FollowUserId = new List<string>{},
+                    BlockedUserId = new List<string>{}
+
+                },
+                new User
+                {
+                    FullName = "TheLegend27",
+                    Id = "0000000000000000000011",
+                    PostId = new List<string> {"100000000000000000000011"},
+                    CircleId=new List<string>{},
+                    FollowUserId = new List<string>{},
+                    BlockedUserId = new List<string>{}
+
                 }
             };
             await user.InsertManyAsync(users);
@@ -72,6 +92,18 @@ namespace Socialmedia.Seeders
                     ContentText = "Dette er en post2",
                     CircleId = "010000000000000000000000",
                     UserId = "000000000000000000000000"
+                },
+                new Post
+                {
+                    Id="100000000000000000000010",
+                    ContentText = "Dette er en post3",
+                    UserId = "000000000000000000000010"
+                },
+                new Post
+                {
+                    Id="100000000000000000000011",
+                    ContentText = "Dette er en post4",
+                    UserId = "0000000000000000000011",
                 }
             };
             await post.InsertManyAsync(posts);
