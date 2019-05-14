@@ -25,6 +25,7 @@ namespace Socialmedia.Seeders
 
             SeedUser(_users);
             SeedPost(_posts);
+            SeedCircle(_circle);
         }
 
         static async void SeedUser(IMongoCollection<User> user)
@@ -36,7 +37,7 @@ namespace Socialmedia.Seeders
                     FullName = "Niels",
                     Id = "000000000000000000000000",
                     PostId = new List<string> {"100000000000000000000000"},
-                    CircleId=new List<string>{},
+                    CircleId=new List<string>{"010000000000000000000000"},
                     FollowUserId = new List<string>{},
                     BlockedUserId = new List<string>{}
                 },
@@ -45,7 +46,7 @@ namespace Socialmedia.Seeders
                     FullName = "Janz",
                     Id = "000000000000000000000001",
                     PostId = new List<string>{},
-                    CircleId=new List<string>{},
+                    CircleId=new List<string>{"010000000000000000000000"},
                     FollowUserId = new List<string>{},
                     BlockedUserId = new List<string>{}
                 }
@@ -60,10 +61,32 @@ namespace Socialmedia.Seeders
                 new Post
                 {
                     Id = "100000000000000000000000",
-                    ContentText = "Dette er en post",
-                    UserId = "000000000000000000000000"
+                    ContentText = "Dette er en post1",
+                    UserId = "000000000000000000000000",
+                    CircleId = null
+
+                },
+                new Post
+                {
+                    Id = "100000000000000000000001",
+                    ContentText = "Dette er en post2",
+                    CircleId = "010000000000000000000000",
+                    UserId = null
                 }
             };
+            await post.InsertManyAsync(posts);
+        }
+
+        static async void SeedCircle(IMongoCollection<Circle> circle)
+        {
+            var circles = new Circle
+
+            {
+                Id = "010000000000000000000000",
+                PostId = new List<string> {"100000000000000000000001"},
+                UserId = new List<string> {"000000000000000000000000"}
+            };
+            await circle.InsertOneAsync(circles);
         }
     }
 }
