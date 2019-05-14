@@ -31,7 +31,8 @@ namespace Socialmedia.Seeders
         {
             await user.InsertOneAsync(new User
             {
-                FullName = "Niels", Id="000000000000000000000000",
+                FullName = "Niels",
+                Id ="000000000000000000000000",
                 PostId = new List<string>{"100000000000000000000000"}
             });
 
@@ -41,6 +42,7 @@ namespace Socialmedia.Seeders
         {
             await post.InsertOneAsync(new Post
             {
+                Id = "100000000000000000000000",
                 ContentText = "Dette er en post",
                 UserId = "000000000000000000000000"
             });
