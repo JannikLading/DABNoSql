@@ -84,7 +84,7 @@ namespace Socialmedia.Controllers
         }
 
         //  api/<controller>/5
-        [HttpPatch("{id}")]
+        [HttpPatch("{postId}")]
         public ActionResult Create_Comment(string postId, Comment text) 
         {
            var post = _postsService.Get(postId);

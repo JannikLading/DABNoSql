@@ -60,7 +60,7 @@ namespace Socialmedia.Controllers
                 return NotFound(); 
             }
 
-            _userService.Update(id, userIn);
+            _userService.Update(userIn);
 
             return NoContent(); 
         }

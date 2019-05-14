@@ -16,6 +16,7 @@ namespace Socialmedia.Controllers
     {
         private readonly UserService _userService;
         private readonly CircleService _circleService;
+        private readonly PostsService _postsService; 
 
         public WallsController(UserService userService, CircleService circleService)
         {
@@ -27,45 +28,46 @@ namespace Socialmedia.Controllers
         public ActionResult<List<Post>> Get(string userId, string guestId)
         {
             List<Post> postsToWall = new List<Post>();
-            //User user = _userService.Get(userId);
-            //User guestUser = _userService.Get(guestId);
+            User user = _userService.Get(userId);
+            User guestUser = _userService.Get(guestId);
 
-            //foreach (var id in user.BlockedUserId)
-            //{
-            //    if (guestId == id)
-            //        return NoContent(); 
-            //}
+            foreach (var id in user.BlockedUserId)
+            {
+                if (guestId == id)
+                    return NoContent();
+            }
 
-            //foreach (var post in user.Post)
-            //{
-            //    //postsToWall.Add(post);
-            //}
-            
-            //List<string> circleIdList = new List<string>();
+            foreach (var postId in user.PostId)
+            {
+                postsToWall.Add(_postsService.Get(postId));
+            }
 
-            //foreach (var circleId in user.CircleId)
-            //{
-            //    foreach (var circleIdOther in guestUser.CircleId)
-            //    {
-            //        if (circleId == circleIdOther)
-            //        {
-            //            circleIdList.Add(circleId);
-            //        }
-            //    }
-            //}
-           
-            //foreach (var circleId in circleIdList)
-            //{
-            //    Circle circle = _circleService.Get(circleId);
+            List<string> circleIdList = new List<string>();
 
-            //    foreach (var post in circle.Post)
-            //    {
-            //        if (post.UserId == userId)
-            //        {
-            //            postsToWall.Add(post);
-            //        }
-            //    }
-            //}
+            foreach (var circleId in user.CircleId)
+            {
+                foreach (var circleIdOther in guestUser.CircleId)
+                {
+                    if (circleId == circleIdOther)
+                    {
+                        circleIdList.Add(circleId);
+                    }
+                }
+            }
+
+            foreach (var circleId in circleIdList)
+            {
+                Circle circle = _circleService.Get(circleId);
+
+                foreach (var postId in circle.PostId)
+                {
+                    var post = _postsService.Get(postId);
+                    if (post.UserId == userId)
+                    {
+                        postsToWall.Add(post);
+                    }
+                }
+            }
 
             return postsToWall;
         }
