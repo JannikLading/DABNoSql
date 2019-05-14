@@ -24,21 +24,36 @@ namespace Socialmedia.Seeders
             _circle = database.GetCollection<Circle>("Circle");
 
             SeedUser(_users);
-            SeedPost(_posts, _users);
+            SeedPost(_posts);
         }
 
         static async void SeedUser(IMongoCollection<User> user)
         {
-            await user.InsertOneAsync(new User
+            var users = new List<User>
             {
-                FullName = "Niels",
-                Id ="000000000000000000000000",
-                PostId = new List<string>{"100000000000000000000000"}
-            });
-
+                new User
+                {
+                    FullName = "Niels",
+                    Id = "000000000000000000000000",
+                    PostId = new List<string> {"100000000000000000000000"},
+                    CircleId=new List<string>{},
+                    FollowUserId = new List<string>{},
+                    BlockedUserId = new List<string>{}
+                },
+                new User
+                {
+                    FullName = "Janz",
+                    Id = "000000000000000000000001",
+                    PostId = new List<string>{},
+                    CircleId=new List<string>{},
+                    FollowUserId = new List<string>{},
+                    BlockedUserId = new List<string>{}
+                }
+            };
+            await user.InsertManyAsync(users);
         }
 
-        static async void SeedPost(IMongoCollection<Post> post, IMongoCollection<User> User)
+        static async void SeedPost(IMongoCollection<Post> post)
         {
             await post.InsertOneAsync(new Post
             {
