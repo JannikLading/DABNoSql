@@ -55,12 +55,15 @@ namespace Socialmedia.Seeders
 
         static async void SeedPost(IMongoCollection<Post> post)
         {
-            await post.InsertOneAsync(new Post
+            var posts = new List<Post>
             {
-                Id = "100000000000000000000000",
-                ContentText = "Dette er en post",
-                UserId = "000000000000000000000000"
-            });
+                new Post
+                {
+                    Id = "100000000000000000000000",
+                    ContentText = "Dette er en post",
+                    UserId = "000000000000000000000000"
+                }
+            };
         }
     }
 }
