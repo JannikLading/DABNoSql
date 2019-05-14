@@ -12,7 +12,7 @@ namespace Socialmedia.Seeders
     {
         private readonly IMongoCollection<User> _users;
         private readonly IMongoCollection<Post> _posts;
-        private readonly IMongoCollection<Circle> _circle;
+        private readonly IMongoCollection<Circle> _circles;
 
 
         public Seeding(IConfiguration config)
@@ -21,11 +21,11 @@ namespace Socialmedia.Seeders
             var database = client.GetDatabase("SocialMediaDb");
             _users = database.GetCollection<User>("Users");
             _posts = database.GetCollection<Post>("Posts");
-            _circle = database.GetCollection<Circle>("Circle");
+            _circles = database.GetCollection<Circle>("Circles");
 
             SeedUser(_users);
             SeedPost(_posts);
-            SeedCircle(_circle);
+            SeedCircle(_circles);
         }
 
         static async void SeedUser(IMongoCollection<User> user)
@@ -71,7 +71,7 @@ namespace Socialmedia.Seeders
                     Id = "100000000000000000000001",
                     ContentText = "Dette er en post2",
                     CircleId = "010000000000000000000000",
-                    UserId = null
+                    UserId = "000000000000000000000000"
                 }
             };
             await post.InsertManyAsync(posts);
